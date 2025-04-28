@@ -1,16 +1,76 @@
-## Hi there 👋
+# 邮件附件下载器
 
-<!--
-**songximing/songximing** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+这是一个Python脚本，用于批量下载邮箱中的所有附件。
 
-Here are some ideas to get you started:
+## 功能特点
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- 图形用户界面，操作简单直观
+- 下载邮箱中的所有附件
+- 按发件人用户名分类保存附件
+- 支持多种邮件服务器（Gmail, Outlook, QQ邮箱等）
+- 显示下载进度条
+- 支持中文文件名
+- 安全的密码输入方式
+- 配置自动保存和加载
+- 实时日志显示
+
+## 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+## 使用方法
+
+1. 运行图形界面版本：
+```bash
+python email_attachment_downloader_gui.py
+```
+
+2. 在界面中：
+   - 填写邮箱地址和密码/授权码
+   - 选择或输入IMAP服务器地址
+   - 选择或输入保存路径
+   - 点击"开始下载"按钮
+
+3. 常用功能：
+   - "保存配置"：保存当前邮箱配置，下次启动自动加载
+   - "清除日志"：清除日志显示区域
+   - "浏览"：选择保存路径
+
+## 常用IMAP服务器地址
+
+- Gmail: imap.gmail.com
+- Outlook/Hotmail: outlook.office365.com
+- QQ邮箱: imap.qq.com
+- 163邮箱: imap.163.com
+- 企业163邮箱: imap.qiye.163.com
+
+## 注意事项
+
+1. 对于Gmail用户，需要开启"低安全性应用访问权限"或使用应用专用密码
+2. 某些邮箱服务可能需要在邮箱设置中启用IMAP服务
+3. 建议使用应用专用密码而不是邮箱密码
+4. 确保有足够的磁盘空间存储附件
+5. 下载过程中请勿关闭程序窗口
+6. 下载所有邮件可能需要较长时间，请耐心等待
+
+## 文件保存结构
+
+附件将按照以下结构保存：
+```
+attachments/
+    ├── 张三/
+    │   ├── 20240301_document1.pdf
+    │   └── 20240302_document2.docx
+    └── 李四/
+        ├── 20240301_presentation.pptx
+        └── 20240302_spreadsheet.xlsx
+```
+
+文件名格式：`YYYYMMDD_原文件名`
+
+文件夹命名规则：
+1. 优先使用发件人显示的名称（如"张三"）
+2. 如果没有显示名称，则使用邮箱地址的用户名部分（如"zhangsan"）
+3. 自动清理非法字符，确保文件夹名称合法 
